@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="custom_toast_y_offset">30dp</dimen>
-    <dimen name="custom_toast_elevation">1dp</dimen>
     <dimen name="custom_toast_border_width">1px</dimen>
     <dimen name="custom_toast_border_radius">5dp</dimen>
 

@@ -39,7 +39,7 @@ enum class ToastPosition {
 
 object Toast {
 
-    fun show(context: Context, type: ToastType, text: String, duration: ToastDuration, position: ToastPosition) {
+    fun show(context: Context, text: String, type: ToastType, duration: ToastDuration, position: ToastPosition) {
 
         val resources = context.resources
 

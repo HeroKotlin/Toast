@@ -9,8 +9,6 @@ import kotlinx.android.synthetic.main.custom_toast.view.*
 
 enum class ToastType {
 
-    LOADING,
-
     SUCCESS,
 
     ERROR,
@@ -37,55 +35,43 @@ enum class ToastPosition {
 
 }
 
-object Toast {
+class Toast constructor(private val context: Context) {
 
-    fun show(context: Context, text: String, type: ToastType, duration: ToastDuration, position: ToastPosition) {
+    private val yOffset = getDimension(R.dimen.custom_toast_y_offset)
 
-        val resources = context.resources
+    private val imageMinWidth = getDimension(R.dimen.custom_toast_image_min_width)
+    private val imagePaddingHorizontal = getDimension(R.dimen.custom_toast_image_padding_horizontal)
+    private val imageIconTextSpacing = getDimension(R.dimen.custom_toast_image_icon_text_spacing)
+    private val imageTextMarginBottom = getDimension(R.dimen.custom_toast_image_text_margin_bottom)
 
-        val yOffset = resources.getDimension(R.dimen.custom_toast_y_offset).toInt()
+    private val textPaddingHorizontal = getDimension(R.dimen.custom_toast_text_padding_horizontal)
+    private val textPaddingVertical = getDimension(R.dimen.custom_toast_text_padding_vertical)
 
-        val loadingMinWidth = resources.getDimension(R.dimen.custom_toast_loading_min_width).toInt()
-        val loadingPaddingHorizontal = resources.getDimension(R.dimen.custom_toast_loading_padding_horizontal).toInt()
-        val loadingIconTextSpacing = resources.getDimension(R.dimen.custom_toast_loading_icon_text_spacing).toInt()
-        val loadingTextMarginBottom = resources.getDimension(R.dimen.custom_toast_loading_text_margin_bottom).toInt()
+    private fun getDimension(resId: Int): Int {
+        return context.resources.getDimension(resId).toInt()
+    }
 
-        val imageMinWidth = resources.getDimension(R.dimen.custom_toast_image_min_width).toInt()
-        val imagePaddingHorizontal = resources.getDimension(R.dimen.custom_toast_image_padding_horizontal).toInt()
-        val imageIconTextSpacing = resources.getDimension(R.dimen.custom_toast_image_icon_text_spacing).toInt()
-        val imageTextMarginBottom = resources.getDimension(R.dimen.custom_toast_image_text_margin_bottom).toInt()
-
-        val textPaddingHorizontal = resources.getDimension(R.dimen.custom_toast_text_padding_horizontal).toInt()
-        val textPaddingVertical = resources.getDimension(R.dimen.custom_toast_text_padding_vertical).toInt()
+    fun show(text: String, type: ToastType, duration: ToastDuration, position: ToastPosition) {
 
         val view = LayoutInflater.from(context).inflate(R.layout.custom_toast, null)
 
         view.textView.text = text
 
         when (type) {
-            ToastType.LOADING -> {
-                view.minimumWidth = loadingMinWidth
-                view.imageView.visibility = View.GONE
-                view.loadingView.visibility = View.VISIBLE
-                view.textView.setPadding(loadingPaddingHorizontal, loadingIconTextSpacing, loadingPaddingHorizontal, loadingTextMarginBottom)
-            }
             ToastType.SUCCESS -> {
                 view.minimumWidth = imageMinWidth
                 view.imageView.visibility = View.VISIBLE
-                view.loadingView.visibility = View.GONE
                 view.imageView.setImageResource(R.drawable.custom_toast_success)
                 view.textView.setPadding(imagePaddingHorizontal, imageIconTextSpacing, imagePaddingHorizontal, imageTextMarginBottom)
             }
             ToastType.ERROR -> {
                 view.minimumWidth = imageMinWidth
                 view.imageView.visibility = View.VISIBLE
-                view.loadingView.visibility = View.GONE
                 view.imageView.setImageResource(R.drawable.custom_toast_error)
                 view.textView.setPadding(imagePaddingHorizontal, imageIconTextSpacing, imagePaddingHorizontal, imageTextMarginBottom)
             }
             ToastType.TEXT -> {
                 view.imageView.visibility = View.GONE
-                view.loadingView.visibility = View.GONE
                 view.textView.setPadding(textPaddingHorizontal, textPaddingVertical, textPaddingHorizontal, textPaddingVertical)
             }
         }

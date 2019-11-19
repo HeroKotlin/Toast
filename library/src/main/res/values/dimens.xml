@@ -4,12 +4,6 @@
     <dimen name="custom_toast_border_width">1px</dimen>
     <dimen name="custom_toast_border_radius">5dp</dimen>
 
-    <dimen name="custom_toast_loading_min_width">110dp</dimen>
-    <dimen name="custom_toast_loading_padding_horizontal">15dp</dimen>
-    <dimen name="custom_toast_loading_icon_margin_top">15dp</dimen>
-    <dimen name="custom_toast_loading_icon_text_spacing">8dp</dimen>
-    <dimen name="custom_toast_loading_text_margin_bottom">15dp</dimen>
-
     <dimen name="custom_toast_image_min_width">110dp</dimen>
     <dimen name="custom_toast_image_padding_horizontal">15dp</dimen>
     <dimen name="custom_toast_image_icon_margin_top">15dp</dimen>

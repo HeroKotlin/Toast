@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="custom_toast_background_color">#AA000000</color>
-    <color name="custom_toast_border_color">#BB000000</color>
+    <color name="custom_toast_background_color">#CC000000</color>
+    <color name="custom_toast_border_color">#DD000000</color>
     <color name="custom_toast_text_color">#fff</color>
 </resources>

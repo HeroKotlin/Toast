@@ -7,34 +7,6 @@ import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.custom_toast.view.*
 
-enum class ToastType {
-
-    SUCCESS,
-
-    ERROR,
-
-    TEXT
-
-}
-
-enum class ToastDuration {
-
-    SHORT,
-
-    LONG,
-
-}
-
-enum class ToastPosition {
-
-    TOP,
-
-    CENTER,
-
-    BOTTOM
-
-}
-
 class Toast constructor(private val context: Context) {
 
     private val yOffset = getDimension(R.dimen.custom_toast_y_offset)
@@ -51,26 +23,26 @@ class Toast constructor(private val context: Context) {
         return context.resources.getDimension(resId).toInt()
     }
 
-    fun show(text: String, type: ToastType, duration: ToastDuration, position: ToastPosition) {
+    fun show(text: String, type: String, duration: String, position: String) {
 
         val view = LayoutInflater.from(context).inflate(R.layout.custom_toast, null)
 
         view.textView.text = text
 
         when (type) {
-            ToastType.SUCCESS -> {
+            "success" -> {
                 view.minimumWidth = imageMinWidth
                 view.imageView.visibility = View.VISIBLE
                 view.imageView.setImageResource(R.drawable.custom_toast_success)
                 view.textView.setPadding(imagePaddingHorizontal, imageIconTextSpacing, imagePaddingHorizontal, imageTextMarginBottom)
             }
-            ToastType.ERROR -> {
+            "error" -> {
                 view.minimumWidth = imageMinWidth
                 view.imageView.visibility = View.VISIBLE
                 view.imageView.setImageResource(R.drawable.custom_toast_error)
                 view.textView.setPadding(imagePaddingHorizontal, imageIconTextSpacing, imagePaddingHorizontal, imageTextMarginBottom)
             }
-            ToastType.TEXT -> {
+            else -> {
                 view.imageView.visibility = View.GONE
                 view.textView.setPadding(textPaddingHorizontal, textPaddingVertical, textPaddingHorizontal, textPaddingVertical)
             }
@@ -80,7 +52,7 @@ class Toast constructor(private val context: Context) {
         toast.view = view
 
         toast.duration = when (duration) {
-            ToastDuration.LONG -> {
+            "long" -> {
                 Toast.LENGTH_LONG
             }
             else -> {
@@ -89,10 +61,10 @@ class Toast constructor(private val context: Context) {
         }
 
         when (position) {
-            ToastPosition.TOP -> {
+            "top" -> {
                 toast.setGravity(Gravity.TOP, 0, yOffset)
             }
-            ToastPosition.BOTTOM -> {
+            "bottom" -> {
                 toast.setGravity(Gravity.BOTTOM, 0, yOffset)
             }
             else -> {

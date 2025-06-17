@@ -5,7 +5,7 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
-import kotlinx.android.synthetic.main.custom_toast.view.*
+import com.github.herokotlin.toast.databinding.CustomToastBinding
 
 class Toast constructor(private val context: Context) {
 
@@ -25,31 +25,31 @@ class Toast constructor(private val context: Context) {
 
     fun show(text: String, type: String, duration: String, position: String) {
 
-        val view = LayoutInflater.from(context).inflate(R.layout.custom_toast, null)
+        val binding = CustomToastBinding.inflate(LayoutInflater.from(context))
 
-        view.textView.text = text
+        binding.textView.text = text
 
         when (type) {
             "success" -> {
-                view.minimumWidth = imageMinWidth
-                view.imageView.visibility = View.VISIBLE
-                view.imageView.setImageResource(R.drawable.custom_toast_success)
-                view.textView.setPadding(imagePaddingHorizontal, imageIconTextSpacing, imagePaddingHorizontal, imageTextMarginBottom)
+                binding.root.minimumWidth = imageMinWidth
+                binding.imageView.visibility = View.VISIBLE
+                binding.imageView.setImageResource(R.drawable.custom_toast_success)
+                binding.textView.setPadding(imagePaddingHorizontal, imageIconTextSpacing, imagePaddingHorizontal, imageTextMarginBottom)
             }
             "error" -> {
-                view.minimumWidth = imageMinWidth
-                view.imageView.visibility = View.VISIBLE
-                view.imageView.setImageResource(R.drawable.custom_toast_error)
-                view.textView.setPadding(imagePaddingHorizontal, imageIconTextSpacing, imagePaddingHorizontal, imageTextMarginBottom)
+                binding.root.minimumWidth = imageMinWidth
+                binding.imageView.visibility = View.VISIBLE
+                binding.imageView.setImageResource(R.drawable.custom_toast_error)
+                binding.textView.setPadding(imagePaddingHorizontal, imageIconTextSpacing, imagePaddingHorizontal, imageTextMarginBottom)
             }
             else -> {
-                view.imageView.visibility = View.GONE
-                view.textView.setPadding(textPaddingHorizontal, textPaddingVertical, textPaddingHorizontal, textPaddingVertical)
+                binding.imageView.visibility = View.GONE
+                binding.textView.setPadding(textPaddingHorizontal, textPaddingVertical, textPaddingHorizontal, textPaddingVertical)
             }
         }
 
         val toast = Toast(context)
-        toast.view = view
+        toast.view = binding.root
 
         toast.duration = when (duration) {
             "long" -> {

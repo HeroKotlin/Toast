@@ -4,16 +4,19 @@ def safeExtGet(prop, fallback) {
 
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 group = 'com.github.herokotlin'
 
 android {
-    compileSdkVersion safeExtGet('compileSdkVersion', 28)
-    buildToolsVersion safeExtGet('buildToolsVersion', '28.0.3')
+    namespace 'com.github.herokotlin.toast'
+    compileSdkVersion safeExtGet('compileSdkVersion', 35)
+    buildToolsVersion safeExtGet('buildToolsVersion', '35.0.0')
 
+    buildFeatures {
+        viewBinding true
+    }
     defaultConfig {
-        minSdkVersion safeExtGet('minSdkVersion', 16)
-        targetSdkVersion safeExtGet('targetSdkVersion', 28)
+        minSdkVersion safeExtGet('minSdkVersion', 20)
+        targetSdkVersion safeExtGet('targetSdkVersion', 35)
         versionCode 1
         versionName "1.0"
 

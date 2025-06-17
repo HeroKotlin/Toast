@@ -14,6 +14,13 @@ android {
     buildFeatures {
         viewBinding true
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_21 // 统一为 Java 21
+        targetCompatibility JavaVersion.VERSION_21
+    }
+    kotlinOptions {
+        jvmTarget = "21" // 统一为 Kotlin JVM 21
+    }
     defaultConfig {
         minSdkVersion safeExtGet('minSdkVersion', 20)
         targetSdkVersion safeExtGet('targetSdkVersion', 35)
